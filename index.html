@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Starting...</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --primary-hover: #2563eb;
+            --bg-gradient-start: #1e293b;
+            --bg-gradient-end: #0f172a;
+            --text-color: #334155;
+            --text-light: #94a3b8;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            padding: 1rem;
+            gap: 2rem; /* Space between ads and content */
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .ad-container {
+            width: 320px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            z-index: 5;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+            letter-spacing: -0.025em;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .timer-wrapper {
+            margin: 2rem auto;
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Decorative ring */
+        .timer-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #e2e8f0;
+        }
+
+        /* Active progress ring simulation */
+        .timer-ring::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: var(--primary-color);
+            border-right-color: var(--primary-color);
+            transform: rotate(-45deg);
+            animation: spin 3s linear infinite; /* Slowed spin as requested previously */
+            opacity: 0.2;
+        }
+
+        .timer-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+
+        .status-message {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            opacity: 0.5;
+            pointer-events: none;
+            user-select: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Active state for button */
+        .btn.active {
+            opacity: 1;
+            pointer-events: auto;
+            background-color: var(--primary-color);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn.active:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn.active:active {
+            transform: translateY(0);
+        }
+
+        /* Icon for button */
+        .btn svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .timer-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            .timer-wrapper {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Banner Ad -->
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '9469b3944529ec6fca289427dee48428',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/9469b3944529ec6fca289427dee48428/invoke.js"></script>
+    </div>
+
+    <div class="container">
+        <h1>Preparing Download</h1>
+        <p class="subtitle">Please wait while we generate your secure download link.</p>
+
+        <div class="timer-wrapper">
+            <div class="timer-ring"></div>
+            <div class="timer-circle" id="timer">20</div>
+        </div>
+
+        <p class="status-message" id="message">Your movie will start downloading in <span id="text-timer">20</span> seconds...</p>
+
+        <a href="#" class="btn" id="download-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.97917 19.8042 4.5875 19.4125C4.19583 19.0208 4 18.55 4 18V15H6V18H18V15H20V18C20 18.55 19.8042 19.0208 19.4125 19.4125C19.0208 19.8042 18.55 20 18 20H6Z"/></svg>
+            Download Now
+        </a>
+    </div>
+
+    <!-- Bottom Banner Ad -->
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '9469b3944529ec6fca289427dee48428',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/9469b3944529ec6fca289427dee48428/invoke.js"></script>
+    </div>
+
+    <script>
+        // Configuration
+        const TARGET_URL = "https://example.com/my-download-link";
+        const TOTAL_SECONDS = 20;
+
+        // Elements
+        const timerDisplay = document.getElementById('timer');
+        const textTimerDisplay = document.getElementById('text-timer');
+        const messageDisplay = document.getElementById('message');
+        const downloadBtn = document.getElementById('download-btn');
+        
+        // State
+        let timeLeft = TOTAL_SECONDS;
+
+        // Countdown Logic
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            
+            // Update UI
+            timerDisplay.textContent = timeLeft;
+            textTimerDisplay.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                finishCountdown();
+            }
+        }, 1500); // 1.5 seconds per "tick" for slow timer
+
+        function finishCountdown() {
+            // Update Text
+            messageDisplay.textContent = "Your download is ready!";
+            timerDisplay.textContent = "0";
+
+            // Enable Button
+            downloadBtn.classList.add('active');
+            downloadBtn.href = TARGET_URL;
+            downloadBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.97917 19.8042 4.5875 19.4125C4.19583 19.0208 4 18.55 4 18V15H6V18H18V15H20V18C20 18.55 19.8042 19.0208 19.4125 19.4125C19.0208 19.8042 18.55 20 18 20H6Z"/></svg>
+                Download Now
+            `;
+
+            // Auto Redirect
+            console.log("Redirecting to:", TARGET_URL);
+            window.location.href = TARGET_URL;
+        }
+    </script>
+    <script
+  type="text/javascript"
+  src="//pl28177247.effectivegatecpm.com/4f/fa/13/4ffa13fe5250b18b5928540e060ac7be.js"
+></script>
+</body>
+</html>
